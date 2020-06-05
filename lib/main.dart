@@ -5,8 +5,26 @@ import 'package:flutter/material.dart';
 // }
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+// MyAppState: the state of MyApp -> widget name / the name just convenient
+// state is persisted, while the statefulwidget can be rebuild
+// State belong to MyApp written in <>
+class MyAppState extends State<MyApp> {
+  
+  var questionIndex = 0;
+  
   void answerQuestion() {
+    setState(() {
+      questionIndex += 1;
+    });
+
+    print(questionIndex);
     print('Answer chosen');
   }
 
@@ -24,7 +42,9 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('The question!'),
+            Text(
+              questions[questionIndex],
+            ),
             RaisedButton(
               child: Text('Answer 1'), 
               onPressed: answerQuestion,
