@@ -34,8 +34,31 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s your fave color?', 
-      'Who a ya?'
+      {
+        'questionText': 'What\'s your fave color?', 
+        'answers': [
+          'black',
+          'black too',
+          'a bit black'
+        ]
+      },
+      {
+        'questionText': 'What\'s your fave animal?', 
+        'answers': [
+          'tiger',
+          'phanter',
+          'cat'
+        ]
+      },
+      {
+        'questionText': 'What\'s your fave drink?', 
+        'answers': [
+          'coffee',
+          'coffee milk',
+          'cappucino',
+          'water, with coffee'
+        ]
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -47,11 +70,14 @@ class _MyAppState extends State<MyApp> {
           children: [
             // question constructor in question.dart
             Question(
-              questions[_questionIndex],
+              questions[_questionIndex]['questionText'],
             ),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            // for every single question, map the answers to list
+            //  ( as list<String>) let dart knows it is a list
+            // ... separate operator, take list, pull values from it and add it to a list without nested list 
+            ...(questions[_questionIndex]['answers'] as List<String>).map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),
