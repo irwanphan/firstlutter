@@ -8,23 +8,23 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
 // MyAppState: the state of MyApp -> widget name / the name just convenient
 // state is persisted, while the statefulwidget can be rebuild
 // State belong to MyApp written in <>
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
   
-  var questionIndex = 0;
+  var _questionIndex = 0;
   
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
 
-    print(questionIndex);
+    print(_questionIndex);
     print('Answer chosen');
   }
 
@@ -43,11 +43,11 @@ class MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Text(
-              questions[questionIndex],
+              questions[_questionIndex],
             ),
             RaisedButton(
               child: Text('Answer 1'), 
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
